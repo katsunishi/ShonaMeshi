@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PROXY_SERVER_URL = "http://localhost:3001";
+const PROXY_SERVER_URL = "http://test-react.katsuhisa.xyz/";
 
 export const fetchRestaurants = async (
   searchKeyword,
