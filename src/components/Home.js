@@ -19,6 +19,7 @@ function Home({
         setSelectedArea={setSelectedArea}
         smallAreas={smallAreas}
       />
+
       <RestaurantList restaurants={restaurants} />
       {restaurants.length === 0 && (
         <p>該当する飲食店が見つかりませんでした。</p>
