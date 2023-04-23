@@ -12,8 +12,6 @@ app.use(cors());
 app.get("/api/restaurants", async (req, res) => {
   //このURLからHTTPリクエストきたら下の関数を実行する
   const { keyword, small_area, midnight } = req.query;
-  // リクエストパラメータを出力
-  console.log("Request parameters:", { keyword, small_area, midnight });
 
   const API_KEY = "d66f981e72268720";
   const API_BASE_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/";
