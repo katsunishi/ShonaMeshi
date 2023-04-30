@@ -46,9 +46,10 @@ app.get("/api/restaurants", async (req, res) => {
     // APIレスポンスを出力
     console.log("API response:", response.data);
     console.log("API small area response:", responseSmallArea.data);
+    console.log(API_KEY);
     res.json({
-      restaurants: response.data,
-      smallAreas: responseSmallArea.data,
+      restaurants: response.data.results.shop,
+      smallAreas: responseSmallArea.data.results.small_area,
     });
   } catch (error) {
     console.error("Error fetching restaurants:", error);
