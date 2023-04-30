@@ -15,16 +15,18 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const areaName = smallAreas.find(
-      (area) => area.code === selectedArea
-    )?.name;
-    const keywordWithArea = areaName
-      ? `${areaName} ${searchKeyword}`
-      : searchKeyword;
-    const keyword = isIzakayaSelected
-      ? keywordWithArea + " 居酒屋"
-      : keywordWithArea;
-    onSearch(keywordWithArea, selectedArea, keyword, isMidnight);
+    if (searchKeyword !== "") {
+      const areaName = smallAreas.find(
+        (area) => area.code === selectedArea
+      )?.name;
+      const keywordWithArea = areaName
+        ? `${areaName} ${searchKeyword}`
+        : searchKeyword;
+      const keyword = isIzakayaSelected
+        ? keywordWithArea + " 居酒屋"
+        : keywordWithArea;
+      onSearch(keywordWithArea, selectedArea, keyword, isMidnight);
+    }
   };
 
   const handleAreaClick = (areaCode) => {

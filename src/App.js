@@ -28,12 +28,12 @@ function App() {
     start = 1,
     loadMore = false
   ) => {
-    setSearchKeyword(searchKeyword); // 追加
+    setSearchKeyword(searchKeyword);
     setSelectedArea(selectedArea);
-    setKeyword(keyword); // 追加
-    setMidnight(midnight); // 追加
+    setKeyword(keyword);
+    setMidnight(midnight);
 
-    const results = await fetchRestaurants(
+    const { restaurants: results, smallAreas } = await fetchRestaurants(
       searchKeyword,
       selectedArea,
       keyword,
@@ -45,6 +45,7 @@ function App() {
     } else {
       setRestaurants(results);
     }
+    setSmallAreas(smallAreas);
   };
 
   const fetchSmallAreas = async () => {
