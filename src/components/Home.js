@@ -7,9 +7,10 @@ function Home({
   handleSearch,
   selectedArea,
   setSelectedArea,
+  handleLoadMore,
+  // APIで受け取った情報↓
   smallAreas,
   restaurants,
-  handleLoadMore,
 }) {
   return (
     <div>

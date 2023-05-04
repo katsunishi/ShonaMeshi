@@ -1,6 +1,7 @@
+// HTTP通信のリクエストとレスポンスを管理
 import axios from "axios";
 
-const PROXY_SERVER_URL = "http://localhost:3001";
+const PROXY_SERVER_URL = "http://test-react.katsuhisa.xyz";
 
 const MAX_SEARCH_KEYWORD_LENGTH = 100;
 

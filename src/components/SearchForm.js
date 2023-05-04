@@ -13,9 +13,11 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
   const [className, setClassName] = useState("optionImg1");
   const [scaleClassName, setScaleClassName] = useState("scale1");
 
+  // 検索ボタンを押した時の関数
   const handleSubmit = (event) => {
     event.preventDefault();
     if (searchKeyword !== "") {
+      // smallAreasはapi.jsからプロップスとして引用してきたもの
       const areaName = smallAreas.find(
         (area) => area.code === selectedArea
       )?.name;
@@ -26,10 +28,14 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
         ? keywordWithArea + " 居酒屋"
         : keywordWithArea;
       onSearch(keywordWithArea, selectedArea, keyword, isMidnight);
+      // A?B:Cの時、Aが正しいならBを正しく無いならCを追加する。
     }
   };
 
+  // エリア選択をクリックした時の関数
   const handleAreaClick = (areaCode) => {
+    // areaCodeはどこからきた？
+    // イコールの場合、選択が解除される。2回目クリックで選択を外す。
     if (selectedArea === areaCode) {
       setSelectedArea("");
     } else {
@@ -37,6 +43,7 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
     }
   };
 
+  // 居酒屋をクリックした時の関数
   const handleClick = () => {
     setClassName((prevClassName) =>
       prevClassName === "optionImg1" ? "optionImg2" : "optionImg1"
@@ -44,6 +51,7 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
     setScaleClassName((prevScaleClassName) =>
       prevScaleClassName === "scale1" ? "scale2" : "scale1"
     );
+    // 居酒屋の選択状態を変換する
     setIsIzakayaSelected((prevState) => !prevState);
   };
 
@@ -70,6 +78,7 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
         className="inputKeyword"
         id="searchKeyword"
         value={searchKeyword}
+        // 検索ワードが変更された時に実行する
         onChange={(event) => setSearchKeyword(event.target.value)}
       />
       <button type="submit" className="searchIcon orange">
@@ -84,6 +93,7 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
             {/* 湘南台エリア */}
             <div
               className={`scale ${
+                // A?B:Cの時、Aが正しいならBを正しく無いならCを追加する。
                 selectedArea === "X293" ? "scale2" : "scale1"
               }`}
               onClick={() => handleAreaClick("X293")}
@@ -114,6 +124,7 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
               </div>
               <p className="imgText">藤沢</p>
             </div>
+            {/* 辻堂エリア */}
             <div
               className={`scale ${
                 searchKeyword.includes("辻堂") ? "scale2" : "scale1"
@@ -133,8 +144,8 @@ function SearchForm({ onSearch, selectedArea, setSelectedArea, smallAreas }) {
         </div>
         <div className="junl">
           <h2>ジャンルから探す</h2>
-          {/* 23時以降営業可能か */}
           <div className="junls">
+            {/* 23時以降営業可能か */}
             <div
               className={`scale ${isMidnight ? "scale2" : "scale1"}`}
               onClick={handleMidnightClick}

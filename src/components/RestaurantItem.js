@@ -14,7 +14,6 @@ function RestaurantItem({ restaurant }) {
       />
       <h3 className="shopName">{restaurant.name}</h3>
       <p className="shopCatch">{restaurant.catchPhrase}</p>
-      {/* <p>23時以降：{restaurant.midnight === "営業している" ? "OK" : "NO"}</p> */}
       <p>{restaurant.detail}</p>
       <div className="shopBtn">
         <div

@@ -1,13 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+// aaaa
 
+// ウェブサーバー（express）の作成
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // CORSミドルウェアを適用
 app.use(cors());
 
+// envファイルに書いた環境変数（APIキーなど）をアプリケーション内で利用可能にする
 require("dotenv").config();
 
 // プロキシエンドポイントを作成
@@ -24,6 +27,7 @@ app.get("/api/restaurants", async (req, res) => {
     "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
 
   try {
+    // awaitは非同期処理
     const response = await axios.get(API_BASE_URL, {
       params: {
         key: API_KEY,
@@ -46,7 +50,6 @@ app.get("/api/restaurants", async (req, res) => {
     // APIレスポンスを出力
     console.log("API response:", response.data);
     console.log("API small area response:", responseSmallArea.data);
-    console.log(API_KEY);
     res.json({
       restaurants: response.data.results.shop,
       smallAreas: responseSmallArea.data.results.small_area,
@@ -57,28 +60,28 @@ app.get("/api/restaurants", async (req, res) => {
   }
 });
 
-app.get("/api/small_areas", async (req, res) => {
-  const API_KEY = process.env.API_KEY;
-  const SMALL_AREA_API_BASE_URL =
-    "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
+// app.get("/api/small_areas", async (req, res) => {
+//   const API_KEY = process.env.API_KEY;
+//   const SMALL_AREA_API_BASE_URL =
+//     "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
 
-  try {
-    const response = await axios.get(SMALL_AREA_API_BASE_URL, {
-      params: {
-        key: API_KEY,
-        format: "json",
-        count: 30,
-      },
-    });
+//   try {
+//     const response = await axios.get(SMALL_AREA_API_BASE_URL, {
+//       params: {
+//         key: API_KEY,
+//         format: "json",
+//         count: 30,
+//       },
+//     });
 
-    // APIレスポンスを出力
-    console.log("API small area response:", response.data);
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching small areas:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+//     // APIレスポンスを出力
+//     console.log("API small area response:", response.data);
+//     res.json(response.data);
+//   } catch (error) {
+//     console.error("Error fetching small areas:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 app
   .listen(PORT, () => {
@@ -87,3 +90,7 @@ app
   .on("error", (error) => {
     console.error(`Error starting server: ${error.message}`);
   });
+
+// axiosはHTTP通信のリクエストとレスポンスを管理
+// プロキシサーバーはクライアントとサーバの中間に位置し、それぞれのやりとりを中継する役割を持つ。セキュリティ面も上がる。
+// ミドルウェアはアプリケーション何のやりとりを管理（サーバーの設定）する。またアプリケーション（今回はExpress）内でクロスオリジンリクエストを許可する。
