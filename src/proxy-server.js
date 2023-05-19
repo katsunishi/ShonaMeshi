@@ -22,9 +22,10 @@ app.get("/api/restaurants", async (req, res) => {
 
   const API_KEY = process.env.API_KEY;
 
-  const API_BASE_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/";
+  const API_BASE_URL =
+    "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/format=json";
   const SMALL_AREA_API_BASE_URL =
-    "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
+    "https://webservice.recruit.co.jp/hotpepper/small_area/v1/format=json";
 
   try {
     // awaitは非同期処理
