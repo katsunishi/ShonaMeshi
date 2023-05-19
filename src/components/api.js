@@ -55,7 +55,7 @@ export const fetchRestaurants = async (
 
 export const getSmallAreas = async () => {
   try {
-    const response = await axios.get(`${PROXY_SERVER_URL}/api/restaurants`);
+    const response = await axios.get(`${PROXY_SERVER_URL}/api/small_areas`);
 
     if (response.data && response.data.smallAreas) {
       const { results } = response.data.smallAreas;
