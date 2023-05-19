@@ -7,7 +7,7 @@ function Header() {
       <div className="headerTitle">
         <div className="headerLogo"></div>
         <div className="Title">
-          <Link to="/">SonaMeshi</Link>
+          <Link to="/">ShonaMeshi</Link>
         </div>
       </div>
       <div className="headerMenu">

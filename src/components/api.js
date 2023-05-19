@@ -1,7 +1,7 @@
 // HTTP通信のリクエストとレスポンスを管理
 import axios from "axios";
 
-const PROXY_SERVER_URL = "http://test-react.katsuhisa.xyz";
+const PROXY_SERVER_URL = "https://shona-meshi.vercel.app/";
 
 const MAX_SEARCH_KEYWORD_LENGTH = 100;
 
