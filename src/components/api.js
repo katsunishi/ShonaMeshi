@@ -53,22 +53,22 @@ export const fetchRestaurants = async (
   }
 };
 
-export const getSmallAreas = async () => {
-  try {
-    const response = await axios.get(`${PROXY_SERVER_URL}/api/small_areas`);
+// export const getSmallAreas = async () => {
+//   try {
+//     const response = await axios.get(`${PROXY_SERVER_URL}/api/small_areas`);
 
-    if (response.data && response.data.smallAreas) {
-      const { results } = response.data.smallAreas;
-      const small_areas =
-        results && results.small_area ? results.small_area : [];
+//     if (response.data && response.data.smallAreas) {
+//       const { results } = response.data.smallAreas;
+//       const small_areas =
+//         results && results.small_area ? results.small_area : [];
 
-      return small_areas;
-    } else {
-      console.error("No smallAreas in response data:", response.data);
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching small areas:", error);
-    return [];
-  }
-};
+//       return small_areas;
+//     } else {
+//       console.error("No smallAreas in response data:", response.data);
+//       return [];
+//     }
+//   } catch (error) {
+//     console.error("Error fetching small areas:", error);
+//     return [];
+//   }
+// };
