@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-// aaaa
 
 // ウェブサーバー（express）の作成
 const app = express();
@@ -22,10 +21,9 @@ app.get("/api/restaurants", async (req, res) => {
 
   const API_KEY = process.env.API_KEY;
 
-  const API_BASE_URL =
-    "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/format=json";
-  const SMALL_AREA_API_BASE_URL =
-    "https://webservice.recruit.co.jp/hotpepper/small_area/v1/format=json";
+  const API_BASE_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/";
+  // const SMALL_AREA_API_BASE_URL =
+  //   "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
 
   try {
     // awaitは非同期処理
@@ -40,20 +38,20 @@ app.get("/api/restaurants", async (req, res) => {
       },
     });
 
-    const responseSmallArea = await axios.get(SMALL_AREA_API_BASE_URL, {
-      params: {
-        key: API_KEY,
-        format: "json",
-        count: 30,
-      },
-    });
+    // const responseSmallArea = await axios.get(SMALL_AREA_API_BASE_URL, {
+    //   params: {
+    //     key: API_KEY,
+    //     format: "json",
+    //     count: 30,
+    //   },
+    // });
 
     // APIレスポンスを出力
     console.log("API response:", response.data);
     console.log("API small area response:", responseSmallArea.data);
     res.json({
       restaurants: response.data.results.shop,
-      smallAreas: responseSmallArea.data.results.small_area,
+      // smallAreas: responseSmallArea.data.results.small_area,
     });
   } catch (error) {
     console.error("Error fetching restaurants:", error);
