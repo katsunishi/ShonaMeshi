@@ -48,7 +48,7 @@ app.get("/api/restaurants", async (req, res) => {
 
     // APIレスポンスを出力
     console.log("API response:", response.data);
-    console.log("API small area response:", responseSmallArea.data);
+    // console.log("API small area response:", responseSmallArea.data);
     res.json({
       restaurants: response.data.results.shop,
       // smallAreas: responseSmallArea.data.results.small_area,
@@ -59,28 +59,28 @@ app.get("/api/restaurants", async (req, res) => {
   }
 });
 
-app.get("/api/small_areas", async (req, res) => {
-  const API_KEY = process.env.API_KEY;
-  const SMALL_AREA_API_BASE_URL =
-    "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
+// app.get("/api/small_areas", async (req, res) => {
+//   const API_KEY = process.env.API_KEY;
+//   const SMALL_AREA_API_BASE_URL =
+//     "https://webservice.recruit.co.jp/hotpepper/small_area/v1/";
 
-  try {
-    const response = await axios.get(SMALL_AREA_API_BASE_URL, {
-      params: {
-        key: API_KEY,
-        format: "json",
-        count: 30,
-      },
-    });
+//   try {
+//     const response = await axios.get(SMALL_AREA_API_BASE_URL, {
+//       params: {
+//         key: API_KEY,
+//         format: "json",
+//         count: 30,
+//       },
+//     });
 
-    // APIレスポンスを出力
-    console.log("API small area response:", response.data);
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching small areas:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+//     // APIレスポンスを出力
+//     console.log("API small area response:", response.data);
+//     res.json(response.data);
+//   } catch (error) {
+//     console.error("Error fetching small areas:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 app
   .listen(PORT, () => {
